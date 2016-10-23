@@ -1,0 +1,5 @@
+baseurl = "https://justin8.github.io/www/"
+title = "Justin Dray"
+languageCode = "en-us"
+theme = "hugo-uno"
+
