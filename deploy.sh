@@ -22,6 +22,7 @@ git fetch --all
 git worktree prune || :
 git worktree add public gh-pages
 git submodule update --init
+(cd themes/hugo-uno; bundle install)
 
 # Build
 hugo
