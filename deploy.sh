@@ -9,8 +9,6 @@ c() { tput sgr0; }
 
 echo -e "$(g)Deploying updates to GitHub...$(c)"
 
-git add -A
-
 if [ $# -ne 1 ]; then
 	echo "$(r)No commit message provided. Aborting$(c)"
 fi
