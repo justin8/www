@@ -1,5 +1,24 @@
-baseurl = "https://justin8.github.io/www/"
-title = "Justin Dray"
+baseurl = "https://www.dray.be/"
 languageCode = "en-us"
 theme = "hugo-uno"
+title = "Justin Dray"
+author = "Justin Dray"
+copyright = ""
+builddrafts = false
+
+[indexes]
+    category = "categories"
+    tag = "tags"
+
+[Params]
+    AuthorName = "Fredrik"
+    disqus = "justindray"
+    email = "justin@dray.be"
+    github = "justin8"
+    twitter = "justindray"
+    description = "Tech ramblings"
+    linkedin = "justindray"
+    cover = "/images/cover.jpg"
+    #logo = "/images/logo.jpg"
+
 
