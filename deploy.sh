@@ -15,7 +15,7 @@ msg="$1"
 
 # Commit to master
 git commit -m "$msg"
-git push
+#git push
 
 # Prepare for build
 git fetch --all
