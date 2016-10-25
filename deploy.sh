@@ -3,8 +3,6 @@ set -e
 
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
-rm -rf public
-
 git add -A
 
 if [ $# -ne 1 ]; then
@@ -19,8 +17,10 @@ git commit -m "$msg"
 
 # Prepare for build
 git fetch --all
+rm -rf public
 git worktree prune || :
 git worktree add public gh-pages
+(cd public; git branch --set-upstream-to=origin/gh-pages; git pull)
 git submodule update --init
 (cd themes/hugo-uno; bundle install)
 
