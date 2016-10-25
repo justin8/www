@@ -1,12 +1,18 @@
 #!/bin/bash
 set -e
 
-echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
+r() { tput setaf 1; tput bold; }
+g() { tput setaf 2; tput bold; }
+y() { tput setaf 3; tput bold; }
+b() { tput setaf 4; tput bold; }
+c() { tput sgr0; }
+
+echo -e "$(g)Deploying updates to GitHub...$(c)"
 
 git add -A
 
 if [ $# -ne 1 ]; then
-	echo "No commit message provided. Aborting"
+	echo "$(r)No commit message provided. Aborting$(c)"
 fi
 
 msg="$1"
@@ -14,6 +20,7 @@ msg="$1"
 # Commit to master
 git commit -m "$msg"
 git push
+echo "$(g)Pushed to master...$(c)"
 
 # Prepare for build
 git fetch --all
@@ -26,9 +33,11 @@ git submodule update --init
 
 # Build
 hugo
+echo "$(g)Built successfully...$(c)"
 
 # Push to gh-pages branch
 cd public
 git add -A
 git commit -m "$msg"
 git push
+echo "$(g)Published successfully$(c)"
