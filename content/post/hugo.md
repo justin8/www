@@ -1,6 +1,6 @@
 +++
 title = "Hugo"
-Description = ""
+Description = "Setting up a Hugo blog"
 Tags = [
   "Blog",
   "Hugo",
