@@ -30,7 +30,9 @@ git submodule update --init
 (cd themes/hugo-uno; bundle install)
 
 # Build
-hugo
+git stash
+hugo || (git stash pop && exit 1)
+git stash pop
 echo "$(g)Built successfully...$(c)"
 
 # Push to gh-pages branch
