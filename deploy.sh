@@ -27,7 +27,7 @@ git worktree prune || :
 git worktree add public gh-pages
 (cd public; git branch --set-upstream-to=origin/gh-pages; git pull)
 git submodule update --init
-(cd themes/hugo-uno; bundle install)
+[[ -e themes/hugo-uno ]] && (cd themes/hugo-uno; bundle install)
 
 # Build
 git stash
