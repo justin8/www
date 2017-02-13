@@ -11,7 +11,7 @@ builddrafts = false
     tag = "tags"
 
 [Params]
-    AuthorName = "Fredrik"
+    AuthorName = "Justin Dray"
     disqus = "justindray"
     email = "justin@dray.be"
     github = "justin8"
