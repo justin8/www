@@ -1,0 +1,34 @@
+langauge: ruby
+
+rvm:
+  - 2.3.3
+
+branches:
+  only:
+    - master
+
+build:
+  ci:
+    - git branch -a
+    - git remote set-url origin git@github.com:justin8/www.git
+    - sudo apt-get update
+    - sudo apt-get install -y wget
+    - wget https://github.com/spf13/hugo/releases/download/v0.18.1/hugo_0.18.1-64bit.deb
+    - sudo dpkg -i hugo*
+    - rm -rf public
+    - "git worktree prune || :"
+    - git checkout gh-pages && git checkout master
+    - git worktree add public gh-pages
+    - (cd public && git pull)
+    - git submodule update --init
+    - (cd themes/hugo-uno && bundle install)
+    - hugo
+    - COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+    - cd public
+    - git commit -am "$COMMIT_MESSAGE" || echo "No changes to generated site"
+    - GIT_SSH_COMMAND="ssh -i /tmp/ssh/shippablewwwdeploykey" git push
+
+integrations:
+  key:
+    - integrationName: shippable-www-deploy-key
+      type: ssh-key
