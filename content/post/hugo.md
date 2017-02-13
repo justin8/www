@@ -58,6 +58,8 @@ Then change the `theme =` line in config.toml to `theme = "hugo-uno"`. No additi
 ## Saving out static files to be served
 This part is a little bit more complicated than I would like, but this lets you keep your master branch and working files seperate from the public files, as well as keeping the 2 source trees seperate but within the same repo. I use a git worktree to checkout an alternative branch from the same `.git` in to a seperate subfolder. Hugo builds to a folder named `public` in the root of the checkout by default, so lets work with that. Adding `public` to the `.gitignore` is the first step, then create and checkout the `gh-pages` branch in to the public folder: `git worktree add -b gh-pages public`. When you run `hugo` with no parameters it will build the static files to the public folder, then you can do the usual git add/commit/push dance. But that is tedious and repetetive, so I just wrote a (script for it here)[https://github.com/justin8/www/blob/master/deploy.sh]. Feel free to use it, you just provide the commit message as the first parameter and it will commit, build the static files and push them to the gh-pages branch if there are any changes. After making the first push to the `gh-pages` branch you can then set this as the branch to use on Github.
 
+I'll follow this up with another post in the future about how I automated this so I didn't need to configure all this ever again
+
 ## Github pages
 In the settings tab for the repo on github, go to settings in the top bar, then scroll down to the `GitHub Pages` header and set the source to `gh-pages` branch and set a custom domain to your website.
 
