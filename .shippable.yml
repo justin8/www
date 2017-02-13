@@ -25,7 +25,9 @@ build:
     - hugo
     - COMMIT_MESSAGE=$(git log -1 --pretty=%B)
     - cd public
-    - git commit -am "$COMMIT_MESSAGE" || echo "No changes to generated site"
+    - git status
+    - git add .
+    - git commit -m "$COMMIT_MESSAGE" || echo "No changes to generated site"
     - GIT_SSH_COMMAND="ssh -i /tmp/ssh/shippablewwwdeploykey" git push
 
 integrations:
