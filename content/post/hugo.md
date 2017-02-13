@@ -10,7 +10,7 @@ Categories = [
   "Hugo",
 ]
 menu = "main"
-date = "2016-10-30T16:36:09+10:00"
+date = "2016-11-30T16:36:09+10:00"
 
 +++
 
@@ -24,7 +24,7 @@ In the setup I went with, there are a few key pieces:
 
 There are alternatives to each, but these are the one's I've found to be simple to use and maintain, as well as being 100% free for personal use.
 
-Let's start at setting up Hugo. You can install it from your package manager n many cases, it's available on OSX, Archlinux and Ubuntu at the very least; other distros may vary.
+Let's start at setting up Hugo. You can install it from your package manager in many cases, it's available on OSX, Archlinux and Ubuntu at the very least; other distros may vary.
 
 ## Create the new site
 `hugo new site myblog`
@@ -35,6 +35,11 @@ This will generate a relatively empty basic site config with a `config.toml` fil
 `hugo new post/foo.md`
 
 This will generate a templated post in `content/post/foo.md`. There is a small blob of toml format metadata at the top, and anything written below the `+++` will be included in the posts, it doesn't get much simpler.
+
+## Testing posts
+`hugo server`
+
+This will generate your files and run a local webserver on port `1313`. Saving any posts will automatically refresh all the generated files. You can also specify `-D` to build draft posts as well.
 
 ## Git repo
 Github pages are great for small static sites, they're free, they're version controlled, it's easy to edit git repos since it's available almost everywhere.
