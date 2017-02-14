@@ -11,6 +11,7 @@ Categories = ["Development","AWS","Route53","DNS","Deployment"]
 I've seen a few people around asking about how to back up DNS from their various providers. I feel it's entirely the wrong direction to go. Having people manually making changes to a DNS service, then backing up records somehow is just too much room for human error for my liking. I've also seen other setups using bind or another local DNS service and hosting it themselves. At least this allows for backups of the config since bind is pretty much plain text. But it is still far from ideal, and hosting DNS is a pain. Ensuring it's redundant across connections, geographic locations, providers and what not, which is a lot of work for something that is essentially a commoditized service these days.
 
 The main points I want in maintaining something simple like DNS is:
+
 * Version Control
 * Peer-reviewed changes
 * Repeatability of all current and previous versions
