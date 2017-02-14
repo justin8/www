@@ -2,7 +2,7 @@
 Categories = ["Development","Build"]
 Tags = ["Development","Build", "Shippable"]
 Description = "Comparisons between a few cloud based build/test tools"
-date = "2017-02-03T16:36:38+10:00"
+date = "2017-01-12T16:36:38+10:00"
 title = "Automated builds"
 menu = "main"
 
