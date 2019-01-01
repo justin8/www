@@ -1,4 +1,4 @@
-baseurl = "https://www.dray.be/"
+baseurl = "https://www.dray.id.au/"
 languageCode = "en-us"
 theme = "hugo-uno"
 title = "Justin Dray"
@@ -13,7 +13,7 @@ builddrafts = false
 [Params]
     AuthorName = "Justin Dray"
     disqus = "justindray"
-    email = "justin@dray.be"
+    email = "justin@dray.id.au"
     github = "justin8"
     twitter = "justindray"
     description = "Tech ramblings"
