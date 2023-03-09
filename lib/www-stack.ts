@@ -1,10 +1,11 @@
-import cdk = require("@aws-cdk/core");
-import * as s3 from "@aws-cdk/aws-s3";
-import * as s3_deploy from "@aws-cdk/aws-s3-deployment";
+import * as cdk from "aws-cdk-lib";
+import { Construct } from "constructs";
+import * as s3 from "aws-cdk-lib/aws-s3";
+import * as s3_deploy from "aws-cdk-lib/aws-s3-deployment";
 //import { StaticSite } from "./static-site";
 
 export class WwwStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     const domainName = "www.dray.id.au";
