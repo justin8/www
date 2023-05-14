@@ -1,0 +1,50 @@
+name: Deploy CDK Stack
+
+# Controls when the action will run. Invokes the workflow on push events but only for the main branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  AWS_REGION : "us-east-1" #Change to reflect your Region
+
+# Permission can be added at job level or workflow level    
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+jobs:
+  DeployCDK:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: "arn:aws:iam::185873083718:role/github-www"
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Set Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Restore cache
+        id: restore-cache
+        uses: actions/cache/restore@v3
+        with:
+          key: ${{ runner.os }}-CDK
+          path: |
+            cdk.out
+      - name: Install dependencies
+        run: yarn install
+      - name: CDK Deploy
+        run: |
+          yarn run deploy
+      - name: Save cache
+        uses: actions/cache/save@v3
+        with:
+          key: ${{ steps.restore-cache.outputs.cache-primary-key }}
+          path: |
+            cdk.out

@@ -1,6 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as s3 from "aws-cdk-lib/aws-s3";
+import * as iam from "aws-cdk-lib/aws-iam";
 import * as s3_deploy from "aws-cdk-lib/aws-s3-deployment";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import { homedir } from "os";
@@ -9,6 +10,34 @@ import { homedir } from "os";
 export class WwwStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+
+    const deployRole = new iam.Role(this, "github-www", {
+      roleName: "github-www",
+      assumedBy: new iam.WebIdentityPrincipal(
+        `arn:aws:iam::${this.account}:oidc-provider/token.actions.githubusercontent.com`,
+        {
+          StringEquals: {
+            "token.actions.gitHubusercontent.com:aud": "sts.amazonaws.com",
+            "token.actions.githubusercontent.com:sub":
+              "repo:justin8/www:ref:refs/heads/main",
+          },
+        }
+      ),
+    });
+
+    deployRole.addToPolicy(
+      new iam.PolicyStatement({
+        actions: ["sts:AssumeRole"],
+        resources: [`arn:aws:iam::*:role/cdk-*-${this.region}`],
+      })
+    );
+
+    deployRole.addToPolicy(
+      new iam.PolicyStatement({
+        actions: ["cloudformation:DescribeStacks"],
+        resources: ["*"],
+      })
+    );
 
     const domainName = "www.dray.id.au";
     const source = "./dist";
