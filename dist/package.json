@@ -4,7 +4,8 @@
   "version": "5.0.8",
   "scripts": {
     "start": "node_modules/.bin/gulp watch",
-    "build": "node_modules/.bin/gulp"
+    "build": "node_modules/.bin/gulp",
+    "bundle": "./bundle.sh"
   },
   "description": "A static website for www.dray.id.au",
   "keywords": [
