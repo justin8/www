@@ -1,9 +1,9 @@
 import * as cdk from "aws-cdk-lib";
-import { Construct } from "constructs";
-import * as s3 from "aws-cdk-lib/aws-s3";
 import * as iam from "aws-cdk-lib/aws-iam";
-import * as s3_deploy from "aws-cdk-lib/aws-s3-deployment";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
+import * as s3 from "aws-cdk-lib/aws-s3";
+import * as s3_deploy from "aws-cdk-lib/aws-s3-deployment";
+import { Construct } from "constructs";
 import { homedir } from "os";
 //import { StaticSite } from "./static-site";
 
@@ -53,7 +53,7 @@ export class WwwStack extends cdk.Stack {
       sources: [
         s3_deploy.Source.asset(source, {
           bundling: {
-            image: Runtime.NODEJS_16_X.bundlingImage,
+            image: Runtime.NODEJS_18_X.bundlingImage,
             volumes: [
               { hostPath: `${homedir()}/.npm`, containerPath: "/.npm" },
             ],
