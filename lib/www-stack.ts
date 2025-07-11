@@ -45,6 +45,7 @@ export class WwwStack extends cdk.Stack {
     const bucket = new s3.Bucket(this, "bucket", {
       bucketName: domainName,
       publicReadAccess: true,
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ACLS_ONLY,
       websiteIndexDocument: "index.html",
     });
 
@@ -53,7 +54,7 @@ export class WwwStack extends cdk.Stack {
       sources: [
         s3_deploy.Source.asset(source, {
           bundling: {
-            image: Runtime.NODEJS_18_X.bundlingImage,
+            image: Runtime.NODEJS_22_X.bundlingImage,
             volumes: [
               { hostPath: `${homedir()}/.npm`, containerPath: "/.npm" },
             ],
