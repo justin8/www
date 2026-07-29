@@ -5,4 +5,4 @@ if [[ $PWD != "/asset-input" ]]; then
   exit 1
 fi
 
-cp -vr index.html css img vendor /asset-output/
+cp -vr index.html robots.txt css img vendor /asset-output/
